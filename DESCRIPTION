@@ -1,0 +1,19 @@
+Package: wideRhino
+Title: Create CVA Biplots Using the GSVD
+Version: 0.0.0.9000
+Authors@R: 
+    person("Raeesa", "Ganey", , "Raeesa.ganey@wits.ac.za", role = c("aut", "cre"),
+           comment = c(ORCID = "0009-0008-6973-0999"))
+Description: Construct a Canonical Variate Analysis Biplot via the Generalised Singular Value Decomposition, for cases when the number of samples is less than the number of variables. 
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Depends: R (>= 4.0.0)
+Imports: 
+    geigen,
+    Matrix
+Suggests:
+    testthat (>= 4.0.0)
+Config/Needs/website: rmarkdown
+VignetteBuilder: knitr
