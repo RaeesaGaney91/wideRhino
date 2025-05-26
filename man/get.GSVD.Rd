@@ -2,7 +2,8 @@
 % Please edit documentation in R/gsvd.R
 \name{get.GSVD}
 \alias{get.GSVD}
-\title{Get GSVD}
+\title{Get GSVD
+Get the components of the GSVD decomposition}
 \usage{
 get.GSVD(A, B)
 }
@@ -11,6 +12,10 @@ get.GSVD(A, B)
 
 \item{B}{Matrix B}
 }
+\value{
+Returns components from the GSVD decomposition
+}
 \description{
 Get GSVD
+Get the components of the GSVD decomposition
 }

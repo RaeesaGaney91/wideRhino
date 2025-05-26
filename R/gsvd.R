@@ -1,12 +1,11 @@
 #' Get GSVD
-#'
+#' Get the components of the GSVD decomposition
 #' @param A Matrix A
 #' @param B Matrix B
 #'
-#' @returns
+#' @returns Returns components from the GSVD decomposition
 #' @export
 #'
-#' @examples
 get.GSVD <- function (A, B)
 {
   p <- ncol(A)

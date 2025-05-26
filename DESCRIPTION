@@ -14,6 +14,8 @@ Imports:
     geigen,
     Matrix
 Suggests:
+    knitr,
+    rmarkdown,
     testthat (>= 4.0.0)
-Config/Needs/website: rmarkdown
 VignetteBuilder: knitr
+Config/Needs/website: rmarkdown
