@@ -12,7 +12,11 @@ RoxygenNote: 7.3.2
 Depends: R (>= 4.0.0)
 Imports: 
     geigen,
-    Matrix
+    Matrix,
+    MASS,
+    cds,
+    ggplot2,
+    dplyr
 Suggests:
     knitr,
     rmarkdown,
