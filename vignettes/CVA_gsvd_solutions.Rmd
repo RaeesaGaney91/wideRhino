@@ -1,8 +1,8 @@
 ---
-title: "CVA-gsvd-solution"
+title: "CVA_gsvd_solutions"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{CVA-gsvd-solution}
+  %\VignetteIndexEntry{CVA_gsvd_solutions}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
