@@ -22,10 +22,6 @@ knitr::opts_chunk$set(
 
 The goal of wideRhino is to create a CVA biplot through the GSVD for data with large p. 
 
-
-
-
-
 ## Installation
 
 You can install the development version of wideRhino from [GitHub](https://github.com/) with:
