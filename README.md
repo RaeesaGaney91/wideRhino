@@ -1,13 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# wideRhino
-
-<img src="logo.png" align="right" width="150" />
-
-<!-- badges: start -->
-
-<!-- badges: end -->
+# wideRhino <img src="logo.png" align="right" width="150" alt="" />
 
 The goal of wideRhino is to create a CVA biplot through the GSVD for
 data with large p. 
