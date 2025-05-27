@@ -11,10 +11,16 @@ CVAbiplot(X, group)
 
 \item{group}{vector of size n showing the groups}
 }
+\value{
+An object with components of a CVA biplot
+}
 \description{
 Create a CVA biplot using the generalised singular value decomposition when
 number of variables (p) is larger than the number of samples (n).
 }
 \details{
 If p < n, then the solution defaults to the standard CVA biplot.
+}
+\examples{
+CVAbiplot(X=iris[,1:4],group = iris[,5])
 }

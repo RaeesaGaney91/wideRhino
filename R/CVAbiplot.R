@@ -8,13 +8,14 @@
 #' @param X n x p data matrix
 #' @param group vector of size n showing the groups
 #'
-#' @returns
+#' @returns An object with components of a CVA biplot
 #' @export
-#'
+#' @examples
+#' CVAbiplot(X=iris[,1:4],group = iris[,5])
 CVAbiplot <- function(X,group)
 {
-  center=TRUE # always
-  scaled=TRUE # does not matter in CVA, but matters in gsvd so must be set to TRUE
+  center=TRUE
+  scaled=TRUE
 
   X <- as.matrix(X)
   unscaled.X <- X
@@ -75,7 +76,7 @@ CVAbiplot <- function(X,group)
     Zmeans <- X_bar %*% Mstar[,1:2]
   }
 
-  # gsvd
+  # GSVD
   groups <- unique(group)
   A <- lapply(groups, function(g) X[group == g,])
   group_means <- lapply(A, colMeans)
@@ -143,7 +144,7 @@ CVAbiplot <- function(X,group)
                  ax.one.unit = ax.one.unit,
                  ax.one.unit_gsvd = ax.one.unit_gsvd)
 
-  #class(object) <- "CVA"
+  # class(object) <- "CVA"
   object
 
 }

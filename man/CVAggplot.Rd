@@ -4,13 +4,21 @@
 \alias{CVAggplot}
 \title{Plot the CVA biplot}
 \usage{
-CVAggplot(x, which.var = 1:bp$p)
+CVAggplot(x, which.var = 1:x$p, var.label = FALSE, group.col = NULL)
 }
 \arguments{
 \item{x}{Object from CVA}
 
-\item{which.var}{which variable to display on biplot}
+\item{which.var}{which variable to display on the biplot}
+
+\item{var.label}{whether to display label for variable name}
+
+\item{group.col}{vector of colours for the groups in the data}
 }
 \description{
 Plot the CVA biplot
+}
+\examples{
+CVAbiplot(X=iris[,1:4],group = iris[,5]) |>
+CVAggplot(which.var=1:2,var.label=TRUE,group.col=c("orange","red","pink"))
 }

@@ -4,10 +4,12 @@
 \alias{axes_coordinates}
 \title{Provide axes coordinates}
 \usage{
-axes_coordinates(bp)
+axes_coordinates(bp, which.var = 1:bp$p)
 }
 \arguments{
 \item{bp}{Object}
+
+\item{which.var}{which variable(s) to find coordinates}
 }
 \value{
 Axes coordinates
