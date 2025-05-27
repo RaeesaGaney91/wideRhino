@@ -4,20 +4,25 @@
 #'
 #' @returns Axes coordinates
 #'
-axes_coordinates <- function(bp)
+axes_coordinates <- function(bp,which.var=1:bp$p)
 {
+  slope = c()
   if(bp$p < bp$n)
   {
-    z.axes <- lapply(1:bp$p, .calibrate.axis, bp$unscaled.X, bp$means, bp$sd,
+    z.axes <- lapply(which.var, .calibrate.axis, bp$unscaled.X, bp$means, bp$sd,
                      bp$ax.one.unit,1:bp$p,rep(5,bp$p),
                      rep(0,bp$p), rep(0,bp$p))
+    for(i in 1:length(which.var)) slope[i] <- z.axes[[i]][[3]]
     for(i in 1:length(z.axes)) z.axes[[i]]<-z.axes[[i]][[1]]
+
   } else if (bp$p > bp$n) {
-    z.axes <- lapply(1:bp$p, .calibrate.axis, bp$unscaled.X, bp$means, bp$sd,
+    z.axes <- lapply(which.var, .calibrate.axis, bp$unscaled.X, bp$means, bp$sd,
                      bp$ax.one.unit_gsvd,1:bp$p,rep(5,bp$p),
                      rep(0,bp$p), rep(0,bp$p))
+    for(i in 1:length(which.var)) slope[i] <- z.axes[[i]][[3]]
+    for(i in 1:length(z.axes)) z.axes[[i]]<-z.axes[[i]][[1]]
   }
-  return(z.axes)
+  return(list(z.axes=z.axes,slope=slope))
 }
 
 #' Calibrate axis

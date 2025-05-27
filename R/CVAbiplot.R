@@ -13,9 +13,8 @@
 #'
 CVAbiplot <- function(X,group)
 {
-  # For the gsvd, forcing it to be scaled
-  center=TRUE
-  scaled=TRUE
+  center=TRUE # always
+  scaled=TRUE # does not matter in CVA, but matters in gsvd so must be set to TRUE
 
   X <- as.matrix(X)
   unscaled.X <- X
@@ -77,7 +76,6 @@ CVAbiplot <- function(X,group)
   }
 
   # gsvd
-  X <- scale(X)
   groups <- unique(group)
   A <- lapply(groups, function(g) X[group == g,])
   group_means <- lapply(A, colMeans)
@@ -145,7 +143,7 @@ CVAbiplot <- function(X,group)
                  ax.one.unit = ax.one.unit,
                  ax.one.unit_gsvd = ax.one.unit_gsvd)
 
-  class(object) <- "cva_gsvd"
+  #class(object) <- "CVA"
   object
 
 }
