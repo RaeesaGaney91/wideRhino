@@ -3,11 +3,14 @@
 
 # wideRhino
 
+<img src="logo.png" align="right" width="150" />
+
 <!-- badges: start -->
 
 <!-- badges: end -->
 
-The goal of wideRhino is to …
+The goal of wideRhino is to create a CVA biplot through the GSVD for
+data with large p. 
 
 ## Installation
 
