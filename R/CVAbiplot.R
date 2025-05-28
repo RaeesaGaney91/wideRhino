@@ -11,7 +11,8 @@
 #' @returns An object with components of a CVA biplot
 #' @export
 #' @examples
-#' CVAbiplot(X=iris[,1:4],group = iris[,5])
+#' CVAbiplot(X=iris[,1:4],group = iris[,5]) |>
+#' CVAggplot(group.col = c("orange","red","pink"))
 CVAbiplot <- function(X,group)
 {
   center=TRUE

@@ -22,5 +22,6 @@ number of variables (p) is larger than the number of samples (n).
 If p < n, then the solution defaults to the standard CVA biplot.
 }
 \examples{
-CVAbiplot(X=iris[,1:4],group = iris[,5])
+CVAbiplot(X=iris[,1:4],group = iris[,5]) |>
+CVAggplot(group.col = c("orange","red","pink"))
 }

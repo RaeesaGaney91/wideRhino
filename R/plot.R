@@ -9,11 +9,7 @@
 #'
 #' @export
 #' @examples
-#' Penguins <- penguins[stats::complete.cases(penguins),]
-#' CVAbiplot(X=Penguins[,3:6],group = Penguins[,1]) |>
-#' CVAggplot(group.col=c("blue","purple","forestgreen"))
-#'
-#' simulated_data
+#' data(sim_data)
 #' CVAbiplot(X=sim_data[,2:301],group = sim_data[,1])|>
 #' CVAggplot(group.col=c("tan1","darkcyan","darkslateblue"),which.var = 1:10,zoom.out=80)
 CVAggplot <- function(x,which.var=1:x$p,var.label=FALSE,group.col=NULL,zoom.out=50)
