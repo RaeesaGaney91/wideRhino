@@ -40,10 +40,12 @@ becomes useful. Using a simulated data set with 3 groups, 100
 observations and 300 variables, a CVA-GSVD biplot can be constructed:
 
 ``` r
-#simulated_data
-#CVAbiplot(X=sim_data[,2:301],group = sim_data[,1])|> 
-#  CVAggplot(group.col=c("tan1","darkcyan","darkslateblue"),which.var =1:10,zoom.out = 80)
+data(sim_data)
+CVAbiplot(X=sim_data[,2:301],group = sim_data[,1]) |>
+  CVAggplot(group.col=c("tan1","darkcyan","darkslateblue"),which.var = 1:10,zoom.out=80)
 ```
+
+<img src="man/figures/README-example2-1.png" width="100%" />
 
 ## About the name 🦏
 
