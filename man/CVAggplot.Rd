@@ -4,7 +4,13 @@
 \alias{CVAggplot}
 \title{Plot the CVA biplot}
 \usage{
-CVAggplot(x, which.var = 1:x$p, var.label = FALSE, group.col = NULL)
+CVAggplot(
+  x,
+  which.var = 1:x$p,
+  var.label = FALSE,
+  group.col = NULL,
+  zoom.out = 50
+)
 }
 \arguments{
 \item{x}{Object from CVA}
@@ -14,12 +20,18 @@ CVAggplot(x, which.var = 1:x$p, var.label = FALSE, group.col = NULL)
 \item{var.label}{whether to display label for variable name}
 
 \item{group.col}{vector of colours for the groups in the data}
+
+\item{zoom.out}{percentage to zoom out of the plot}
 }
 \description{
 Plot the CVA biplot
 }
 \examples{
-Penguins <- penguins[complete.cases(penguins),]
+Penguins <- penguins[stats::complete.cases(penguins),]
 CVAbiplot(X=Penguins[,3:6],group = Penguins[,1]) |>
 CVAggplot(group.col=c("blue","purple","forestgreen"))
+
+simulated_data
+CVAbiplot(X=sim_data[,2:301],group = sim_data[,1])|>
+CVAggplot(group.col=c("tan1","darkcyan","darkslateblue"),which.var = 1:10,zoom.out=80)
 }

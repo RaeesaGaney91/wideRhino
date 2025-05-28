@@ -79,8 +79,8 @@ CVAggplot <- function(x,which.var=1:x$p,var.label=FALSE,group.col=NULL,zoom.out=
                           ggplot2::aes(x=V1,y=V2, group = Group,colour = Group)) +
       ggplot2::scale_color_manual(name="Class",values=colorScales) +
       # Limits
-      xlim(xlim) +
-      ylim(ylim) +
+      ggplot2::xlim(xlim) +
+      ggplot2::ylim(ylim) +
       # Theme
       ggplot2::theme_classic() +
       ggplot2::theme(aspect.ratio=1,
@@ -100,8 +100,8 @@ CVAggplot <- function(x,which.var=1:x$p,var.label=FALSE,group.col=NULL,zoom.out=
                           ggplot2::aes(x=V1,y=V2, group = Group,colour = Group)) +
       ggplot2::scale_color_manual(name="Class",values=colorScales) +
       # Limits
-      xlim(xlim) +
-      ylim(ylim) +
+      ggplot2::xlim(xlim) +
+      ggplot2::ylim(ylim) +
       # Theme
       ggplot2::theme_classic() +
       ggplot2::theme(aspect.ratio=1,
