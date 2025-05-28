@@ -4,3 +4,4 @@
 ^README\.Rmd$
 ^vignettes/articles$
 ^.github
+^cran-comments\.md$

@@ -19,6 +19,7 @@ CVAggplot(x, which.var = 1:x$p, var.label = FALSE, group.col = NULL)
 Plot the CVA biplot
 }
 \examples{
-CVAbiplot(X=iris[,1:4],group = iris[,5]) |>
-CVAggplot(which.var=1:2,var.label=TRUE,group.col=c("orange","red","pink"))
+Penguins <- penguins[complete.cases(penguins),]
+CVAbiplot(X=Penguins[,3:6],group = Penguins[,1]) |>
+CVAggplot(group.col=c("blue","purple","forestgreen"))
 }
