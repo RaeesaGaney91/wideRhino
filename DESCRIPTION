@@ -1,6 +1,6 @@
 Package: wideRhino
-Title: Create CVA Biplots Using the GSVD
-Version: 1.0.0
+Title: Create canonical variate analysis biplots using the generalised singular value decomposition
+Version: 1.0.1
 Authors@R: 
     person("Raeesa", "Ganey", , "Raeesa.ganey@wits.ac.za", role = c("aut", "cre"),
            comment = c(ORCID = "0009-0008-6973-0999"))
@@ -21,5 +21,4 @@ Suggests:
     knitr,
     rmarkdown,
     testthat
-VignetteBuilder: knitr
 Config/Needs/website: rmarkdown
