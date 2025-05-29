@@ -4,7 +4,7 @@ Version: 1.0.1
 Authors@R: 
     person("Raeesa", "Ganey", , "Raeesa.ganey@wits.ac.za", role = c("aut", "cre"),
            comment = c(ORCID = "0009-0008-6973-0999"))
-Description: Construct a Canonical Variate Analysis Biplot via the Generalised Singular Value Decomposition, for cases when the number of samples is less than the number of variables. For more information on biplots, see Understanding Biplots (2010) <DOI:10.1002/9780470973196> and for more information on the GSVD, see The GSVD: Where are the Ellipses?, Matrix Trigonometry, and More (2020) <https://doi.org/10.1137/18M1234412>.
+Description: Construct a Canonical Variate Analysis Biplot via the Generalised Singular Value Decomposition, for cases when the number of samples is less than the number of variables. For more information on biplots, see "Understanding Biplots"" (2010) <doi:10.1002/9780470973196> and for more information on the generalised singular value decomposition, see "The GSVD: Where are the Ellipses?, Matrix Trigonometry, and More" (2020) <doi:10.1137/18M1234412>.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
