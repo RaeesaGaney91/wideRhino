@@ -1,5 +1,5 @@
 Package: wideRhino
-Title: Create Canonical Variate Analysis Biplots Using The Generalised Singular Value Decomposition
+Title: Create Canonical Variate Analysis Biplots Using the Generalised Singular Value Decomposition
 Version: 1.0.1
 Authors@R: 
     person("Raeesa", "Ganey", , "Raeesa.ganey@wits.ac.za", role = c("aut", "cre"),
