@@ -31,7 +31,7 @@ pak::pak("RaeesaGaney91/wideRhino")
 
 When $p < n$, then the CVA-GSVD biplot will result to the standard CVA biplot. Here is an example using the `penguins` data:
 
-```{r example1}
+```{r example1, warning=FALSE}
 library(wideRhino)
 Penguins <- datasets::penguins[stats::complete.cases(penguins),]
 CVAgsvd(X=Penguins[,3:6],group = Penguins[,1]) |> 

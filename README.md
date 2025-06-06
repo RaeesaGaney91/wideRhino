@@ -30,14 +30,6 @@ library(wideRhino)
 Penguins <- datasets::penguins[stats::complete.cases(penguins),]
 CVAgsvd(X=Penguins[,3:6],group = Penguins[,1]) |> 
   CVAbiplot(group.col=c("blue","purple","forestgreen"))
-#> Warning: The `x` argument of `as_tibble.matrix()` must have unique column names if
-#> `.name_repair` is omitted as of tibble 2.0.0.
-#> ℹ Using compatibility `.name_repair`.
-#> ℹ The deprecated feature was likely used in the wideRhino package.
-#>   Please report the issue to the authors.
-#> This warning is displayed once every 8 hours.
-#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-#> generated.
 ```
 
 <img src="man/figures/README-example1-1.png" width="100%" />
