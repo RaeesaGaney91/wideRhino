@@ -34,8 +34,8 @@ When $p < n$, then the CVA-GSVD biplot will result to the standard CVA biplot. H
 ```{r example1}
 library(wideRhino)
 Penguins <- datasets::penguins[stats::complete.cases(penguins),]
-CVAbiplot(X=Penguins[,3:6],group = Penguins[,1]) |> 
-  CVAggplot(group.col=c("blue","purple","forestgreen"))
+CVAgsvd(X=Penguins[,3:6],group = Penguins[,1]) |> 
+  CVAbiplot(group.col=c("blue","purple","forestgreen"))
 
 ```
 
@@ -43,8 +43,8 @@ When $p > n$, then the standard CVA biplot will not work due to the singularity 
 
 ```{r example2}
 data(sim_data)
-CVAbiplot(X=sim_data[,2:301],group = sim_data[,1]) |>
-  CVAggplot(group.col=c("tan1","darkcyan","darkslateblue"),which.var = 1:10,zoom.out=80)
+CVAgsvd(X=sim_data[,2:301],group = sim_data[,1]) |>
+  CVAbiplot(group.col=c("tan1","darkcyan","darkslateblue"),which.var = 1:10,zoom.out=80)
 ```
 
 

@@ -6,13 +6,13 @@
 #' @param group.col vector of colours for the groups in the data
 #' @param zoom.out percentage to zoom out of the plot
 #'
-#'
+#' @returns A CVA biplot based on the GSVD
 #' @export
 #' @examples
 #' data(sim_data)
-#' CVAbiplot(X=sim_data[,2:301],group = sim_data[,1])|>
-#' CVAggplot(group.col=c("tan1","darkcyan","darkslateblue"),which.var = 1:10,zoom.out=80)
-CVAggplot <- function(x,which.var=1:x$p,var.label=FALSE,group.col=NULL,zoom.out=50)
+#' CVAgsvd(X=sim_data[,2:301],group = sim_data[,1])|>
+#' CVAbiplot(group.col=c("tan1","darkcyan","darkslateblue"),which.var = 1:10,zoom.out=80)
+CVAbiplot <- function(x,which.var=1:x$p,var.label=FALSE,group.col=NULL,zoom.out=50)
 {
 
   # Samples

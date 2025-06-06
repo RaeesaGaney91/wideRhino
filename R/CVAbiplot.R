@@ -11,9 +11,9 @@
 #' @returns An object with components of a CVA biplot
 #' @export
 #' @examples
-#' CVAbiplot(X=iris[,1:4],group = iris[,5]) |>
-#' CVAggplot(group.col = c("orange","red","pink"))
-CVAbiplot <- function(X,group)
+#' CVAgsvd(X=iris[,1:4],group = iris[,5]) |>
+#' CVAbiplot(group.col = c("orange","red","pink"))
+CVAgsvd <- function(X,group)
 {
   center=TRUE
   scaled=TRUE
@@ -49,7 +49,7 @@ CVAbiplot <- function(X,group)
   n <- nrow(X)
   K <- nlevels(group)
 
-  G <- cds::indmat(group)
+  G <- indmat(group)
   X_bar <- solve(t(G) %*% G) %*% t(G) %*% X
 
   W <-  t(X) %*% X - t(X_bar) %*% t(G) %*% G %*% X_bar

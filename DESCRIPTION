@@ -1,6 +1,6 @@
 Package: wideRhino
-Title: Create Canonical Variate Analysis Biplots Using the Generalised Singular Value Decomposition
-Version: 1.0.1
+Title: High-Dimensional Methods via Generalised Singular Decomposition
+Version: 1.0.2
 Authors@R: 
     person("Raeesa", "Ganey", , "Raeesa.ganey@wits.ac.za", role = c("aut", "cre"),
            comment = c(ORCID = "0009-0008-6973-0999"))
@@ -14,7 +14,6 @@ Imports:
     geigen,
     Matrix,
     MASS,
-    cds,
     ggplot2,
     dplyr
 Suggests:

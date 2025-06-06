@@ -1,6 +1,6 @@
 ## Overview
 
-Fixed the automated check issue reported with submission 1.0.0. 
+Fixed the automated check issue reported with submission 1.0.1. 
 
 R CMD check results 
 
