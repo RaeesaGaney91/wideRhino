@@ -140,7 +140,7 @@ CVAgsvd <- function(X,group)
                  means = means, sd = sd, K = K, n = n, p = p, center = center, scaled=scaled,
                  G=G, Xmeans=X_bar,Lambda = Lambda,Zmeans=Zmeans,Y=Y,YM=YM,N=N,
                  M_gsvd=M_gsvd,Zmeans_gsvd=Zmeans_gsvd,
-                 Lambda_gsvd=Lambda_gsvd,W_gsvd=W_gsvd,
+                 Lambda_gsvd=Lambda_gsvd,W_gsvd=W_gsvd,B_gsvd=B_gsvd,
                  W = W, B = B,Cmat=Cmat, Mstar = Mstar, XM = XM, J1=J1,J2=J2,
                  ax.one.unit = ax.one.unit,
                  ax.one.unit_gsvd = ax.one.unit_gsvd)
