@@ -16,8 +16,8 @@ You can install the development version of wideRhino from
 [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("pak")
-pak::pak("RaeesaGaney91/wideRhino")
+library(devtools)
+install_github("RaeesaGaney91/wideRhino")
 ```
 
 ## Example
@@ -53,7 +53,7 @@ The name `wideRhino` is inspired by the white rhinoceros, a species
 distinguished by its wide mouth and short legs. This physical structure
 reflects the statistical characteristics of the data the package is
 designed for: wide data with a large number of variables ($p$) and a
-small number of observations ($n$) — a setting often described as “large
+small number of observations ($n$) - a setting often described as “large
 $p$, small $n$”.
 
 Just as the white rhino’s wide frame is well-adapted to its environment,

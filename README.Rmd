@@ -23,8 +23,8 @@ The goal of `wideRhino` is to enable the construction of canonical variate analy
 You can install the development version of wideRhino from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("pak")
-pak::pak("RaeesaGaney91/wideRhino")
+library(devtools)
+install_github("RaeesaGaney91/wideRhino")
 ```
 
 ## Example
@@ -49,7 +49,7 @@ CVAgsvd(X=sim_data[,2:301],group = sim_data[,1]) |>
 
 
 ## About the name 🦏
-The name `wideRhino` is inspired by the white rhinoceros, a species distinguished by its wide mouth and short legs. This physical structure reflects the statistical characteristics of the data the package is designed for: wide data with a large number of variables ($p$) and a small number of observations ($n$) — a setting often described as "large $p$, small $n$".
+The name `wideRhino` is inspired by the white rhinoceros, a species distinguished by its wide mouth and short legs. This physical structure reflects the statistical characteristics of the data the package is designed for: wide data with a large number of variables ($p$) and a small number of observations ($n$) - a setting often described as "large $p$, small $n$".
 
 Just as the white rhino’s wide frame is well-adapted to its environment, wideRhino is purpose-built for the challenges of high-dimensional multivariate analysis. By leveraging the generalised singular value decomposition (GSVD), it allows users to construct canonical variate analysis (CVA) biplots even when classical assumptions break down.
 
