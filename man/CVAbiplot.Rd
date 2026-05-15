@@ -7,9 +7,9 @@
 CVAbiplot(
   x,
   which.var = 1:x$p,
-  var.label = FALSE,
+  var.label = TRUE,
   group.col = NULL,
-  zoom.out = 50
+  zoom.out = 80
 )
 }
 \arguments{
@@ -32,5 +32,5 @@ Plot the CVA biplot
 \examples{
 data(sim_data)
 CVAgsvd(X=sim_data[,2:301],group = sim_data[,1])|>
-CVAbiplot(group.col=c("tan1","darkcyan","darkslateblue"),which.var = 1:10,zoom.out=80)
+CVAbiplot(group.col=c("tan1","darkcyan","darkslateblue"),which.var = 1:10)
 }

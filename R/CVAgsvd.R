@@ -1,9 +1,9 @@
-#' CVA Biplot using the GSVD
+#' CVA using the GSVD
 #'
-#' Create a CVA biplot using the generalised singular value decomposition when
+#' Compute canonical variate analysis using the generalised singular value decomposition when
 #' number of variables (p) is larger than the number of samples (n).
 #'
-#' If p < n, then the solution defaults to the standard CVA biplot.
+#' If p < n, then the solution defaults to the standard canonical variate analysis.
 #'
 #' @param X n x p data matrix
 #' @param group vector of size n showing the groups
