@@ -30,7 +30,7 @@ CVAbiplot <- function(x,which.var=1:x$p,var.label=TRUE,group.col=NULL)
       dplyr::mutate(slope = sign(axes_info$slope)) |>
       dplyr::mutate(hadj = -slope, vadj = -1)
 
-    # --- Scaling factor: match vector length to point cloud spread ---
+    # Scaling factor
     point_range <- max(
       diff(range(samples_tbl$V1)),
       diff(range(samples_tbl$V2))
@@ -48,7 +48,34 @@ CVAbiplot <- function(x,which.var=1:x$p,var.label=TRUE,group.col=NULL)
         V2s   = (V2 / norm) * scale_factor
       )
 
-    # Plot
+
+    # Compute sample bounds
+    x_range <- range(samples_tbl$V1)
+    y_range <- range(samples_tbl$V2)
+
+    # Build tick marks tibble, filtered to sample extent
+    ticks_tbl <- purrr::imap_dfr(axes_info$z.axes, function(mat, i) {
+      colnames(mat) <- c("V1", "V2", "tick")
+      dplyr::as_tibble(mat) |>
+        dplyr::mutate(
+          var  = colnames(x$X)[which.var[i]],
+          norm = Vr_tbl$norm[i],
+          V1s  = (V1 / norm) * scale_factor,
+          V2s  = (V2 / norm) * scale_factor
+        ) |>
+        # Keep only ticks within the sample point cloud extent
+        dplyr::filter(
+          V1s >= x_range[1] & V1s <= x_range[2],
+          V2s >= y_range[1] & V2s <= y_range[2]
+        )
+    }) |>
+      dplyr::mutate(
+        perp_x  = -(V2 / norm),
+        perp_y  =  (V1 / norm),
+        tick_len = scale_factor * 0.02   # fixed fraction — no longer grows
+      )
+
+    # PLOT
     ggplot2::ggplot() +
       # Axes lines
       ggplot2::geom_segment(data = Vr_tbl,
@@ -68,9 +95,19 @@ CVAbiplot <- function(x,which.var=1:x$p,var.label=TRUE,group.col=NULL)
                              colour="maroon",size=3)
 
         }} +
-      # Axes tick marks
-      #ggplot2::geom_text(data=Vr_coords_tbl,
-      #                   ggplot2::aes(x=V1,y=V2,label=round(tick,1)),size=2,colour="black") +
+      # Tick marks
+      ggplot2::geom_segment(data = ticks_tbl,
+                            ggplot2::aes(x = V1s - perp_x * tick_len,
+                                         y = V2s - perp_y * tick_len,
+                                         xend = V1s + perp_x * tick_len,
+                                         yend = V2s + perp_y * tick_len),
+                            colour = "#aaaaaa", linewidth = 0.3) +
+      # Tick labels
+      ggplot2::geom_text(data = ticks_tbl,
+                         ggplot2::aes(x = V1s + perp_x * tick_len * 3,
+                                      y = V2s + perp_y * tick_len * 3,
+                                      label = tick),
+                         size = 1.8, colour = "#888888") +
       # Samples
       ggplot2::geom_point(data=samples_tbl,
                           ggplot2::aes(x=V1,y=V2, group = Group,colour = Group)) +
