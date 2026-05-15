@@ -4,24 +4,16 @@
 \alias{CVAbiplot}
 \title{Plot the CVA biplot}
 \usage{
-CVAbiplot(
-  x,
-  which.var = 1:x$p,
-  var.label = TRUE,
-  group.col = NULL,
-  zoom.out = 80
-)
+CVAbiplot(x, which.var = 1:x$p, var.label = TRUE, group.col = NULL)
 }
 \arguments{
-\item{x}{Object from CVA}
+\item{x}{Object from CVAgsvd}
 
 \item{which.var}{which variable to display on the biplot}
 
 \item{var.label}{whether to display label for variable name}
 
 \item{group.col}{vector of colours for the groups in the data}
-
-\item{zoom.out}{percentage to zoom out of the plot}
 }
 \value{
 A CVA biplot based on the GSVD
