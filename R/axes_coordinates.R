@@ -106,4 +106,3 @@ indmat  <- function (groep.vec)
   for (i in 1:length(elements)) Y[groep.vec == elements[i], i] <- 1
   return(Y)
 }
-
