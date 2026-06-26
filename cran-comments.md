@@ -2,10 +2,8 @@
 
 Fixed the automated check issue reported with submission 1.0.1. 
 
-R CMD check results 
-
-── R CMD check results ────────────────────────────────────────────── wideRhino 1.0.1 ────
-Duration: 34.1s
+── R CMD check results ─────────────────────────────────────────────────────────────────────────────────────────────── wideRhino 1.0.2 ────
+Duration: 18.9s
 
 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 

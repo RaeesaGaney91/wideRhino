@@ -1,18 +1,17 @@
 #' Plot the CVA biplot
 #'
-#' @param x Object from CVA
+#' @param x Object from CVAgsvd
 #' @param which.var which variable to display on the biplot
 #' @param var.label whether to display label for variable name
 #' @param group.col vector of colours for the groups in the data
-#' @param zoom.out percentage to zoom out of the plot
 #'
 #' @returns A CVA biplot based on the GSVD
 #' @export
 #' @examples
 #' data(sim_data)
 #' CVAgsvd(X=sim_data[,2:301],group = sim_data[,1])|>
-#' CVAbiplot(group.col=c("tan1","darkcyan","darkslateblue"),which.var = 1:10,zoom.out=80)
-CVAbiplot <- function(x,which.var=1:x$p,var.label=FALSE,group.col=NULL,zoom.out=50)
+#' CVAbiplot(group.col=c("tan1","darkcyan","darkslateblue"),which.var = 1:10)
+CVAbiplot <- function(x,which.var=1:x$p,var.label=TRUE,group.col=NULL)
 {
 
   # Samples
@@ -21,62 +20,63 @@ CVAbiplot <- function(x,which.var=1:x$p,var.label=FALSE,group.col=NULL,zoom.out=
 
   if(is.null(group.col)) colorScales <- grDevices::rainbow(10) else colorScales <- group.col
 
-  # xlim
-  minx <- min(samples_tbl$V1)
-  maxx <- max(samples_tbl$V1)
-  range_x <- maxx - minx
-
-  # ylim
-  miny <- min(samples_tbl$V2)
-  maxy <- max(samples_tbl$V2)
-  range_y <- maxy - miny
-
-  perc <- zoom.out/100
-  xlim <- c(minx - perc*range_x,maxx + perc*range_x)
-  ylim <- c(miny - perc*range_y,maxy + perc*range_y)
-
   if(!is.null(which.var))
   {
-    # Axes with coordinates
     axes_info <- axes_coordinates(x,which.var = which.var)
-    Vr_coords <- axes_info$z.axes
-    for(i in 1:length(Vr_coords)) Vr_coords[[i]] <- cbind(Vr_coords[[i]],var=which.var[i])
-    Vr_coords <- do.call(rbind, Vr_coords)
-    colnames(Vr_coords)[1:3] <- c("V1","V2","tick")
-    Vr_coords_tbl <- dplyr::as_tibble(Vr_coords) |>
-      dplyr::mutate(var = as.factor(var))
-
-
-    Vr_coords_tbl <- Vr_coords_tbl |>
-      dplyr::filter((V1 > xlim[1] & V1 < xlim[2])  & (V2 > ylim[1] & V2 < ylim[2]),.by = var)
-
-    # Axes labels
-    Vr_labs <-  Vr_coords_tbl |>
-      dplyr::filter(tick == max(tick), .by = var) |>
-      dplyr::mutate(var.name = colnames(x$X)[which.var]) |>
+    Vr <- x$ax.one.unit_gsvd[which.var,]
+    colnames(Vr) <- c("V1","V2")
+    Vr <- dplyr::as_tibble(Vr)
+    Vr_tbl <- Vr |> dplyr::mutate(var = colnames(x$X)[which.var]) |>
       dplyr::mutate(slope = sign(axes_info$slope)) |>
       dplyr::mutate(hadj = -slope, vadj = -1)
 
-    # Plot
+    # Scaling factor
+    point_range <- max(
+      diff(range(samples_tbl$V1)),
+      diff(range(samples_tbl$V2))
+    )
+    vector_range <- max(
+      max(abs(Vr_tbl$V1)),
+      max(abs(Vr_tbl$V2))
+    )
+    scale_factor <- point_range / 2
+
+    Vr_tbl <- Vr_tbl |>
+      dplyr::mutate(
+        norm  = sqrt(V1^2 + V2^2),      # vector magnitude
+        V1s   = (V1 / norm) * scale_factor,  # normalize then scale
+        V2s   = (V2 / norm) * scale_factor
+      )
+
+
+
+    # PLOT
     ggplot2::ggplot() +
       # Axes lines
-      ggplot2::geom_line(data = Vr_coords_tbl,
-                         ggplot2::aes(x = V1, y = V2,group = var),colour="#d9d9d9") +
+      ggplot2::geom_segment(data = Vr_tbl,
+                            ggplot2::aes(x= -V1s, y=-V2s,xend = V1s, yend = V2s),colour="#d9d9d9") +
       # Axes labels
-      ggplot2::geom_text(data=Vr_labs,
-                         ggplot2::aes(x=V1, y=V2,
-                                      label = var, # dplyr::if_else(var.label,var.name,var),
-                                      hjust=hadj, vjust=vadj,group=var),colour="maroon",size=3) +
-      # Axes tick marks
-      ggplot2::geom_text(data=Vr_coords_tbl,
-                         ggplot2::aes(x=V1,y=V2,label=round(tick,1)),size=2,colour="black") +
+      {if(var.label) {
+        ggplot2::geom_text(data=Vr_tbl,
+                           ggplot2::aes(x=V1s, y=V2s,
+                                        label = var,
+                                        hjust="outward", vjust="outward"),
+                           colour="maroon",size=3) }
+        else {
+          ggplot2::geom_text(data=Vr_labs,
+                             ggplot2::aes(x=V1s, y=V2s,
+                                          label = var,
+                                          hjust="outward", vjust="outward",group=var),
+                             colour="maroon",size=3)
+
+        }} +
       # Samples
       ggplot2::geom_point(data=samples_tbl,
                           ggplot2::aes(x=V1,y=V2, group = Group,colour = Group)) +
       ggplot2::scale_color_manual(name="Class",values=colorScales) +
       # Limits
-      ggplot2::xlim(xlim) +
-      ggplot2::ylim(ylim) +
+      ggplot2::scale_x_continuous(expand = ggplot2::expansion(mult = 0.2)) +
+      ggplot2::scale_y_continuous(expand = ggplot2::expansion(mult = 0.2)) +
       # Theme
       ggplot2::theme_classic() +
       ggplot2::theme(aspect.ratio=1,
@@ -96,8 +96,8 @@ CVAbiplot <- function(x,which.var=1:x$p,var.label=FALSE,group.col=NULL,zoom.out=
                           ggplot2::aes(x=V1,y=V2, group = Group,colour = Group)) +
       ggplot2::scale_color_manual(name="Class",values=colorScales) +
       # Limits
-      ggplot2::xlim(xlim) +
-      ggplot2::ylim(ylim) +
+      ggplot2::scale_x_continuous(expand = ggplot2::expansion(mult = 0.2)) +
+      ggplot2::scale_y_continuous(expand = ggplot2::expansion(mult = 0.2)) +
       # Theme
       ggplot2::theme_classic() +
       ggplot2::theme(aspect.ratio=1,

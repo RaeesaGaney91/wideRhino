@@ -1,3 +1,3 @@
-## wideRhino 1.0.0
+## moveEZ 1.0.0
 
 Initial CRAN submission
