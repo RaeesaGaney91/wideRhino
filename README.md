@@ -61,3 +61,12 @@ wideRhino is purpose-built for the challenges of high-dimensional
 multivariate analysis. By leveraging the generalised singular value
 decomposition (GSVD), it allows users to construct canonical variate
 analysis (CVA) biplots even when classical assumptions break down.
+
+## Acknowledgments
+
+The CVA-GSVD methodology and the package as a whole are the author’s
+own work. One implementation detail is not: `wideRhino` originally
+relied on the `geigen` package for its GSVD computation, and after
+`geigen` was archived on CRAN, its internal `gsvd()` replacement (see
+`R/gsvd.R`) was written with the assistance of [Claude
+Code](https://claude.com/claude-code) (Anthropic).

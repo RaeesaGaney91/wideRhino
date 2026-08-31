@@ -7,13 +7,17 @@
 #'
 #' @param X n x p data matrix
 #' @param group vector of size n showing the groups
+#' @param tol relative tolerance used when inverting the within-group
+#'   covariance matrix W: eigenvalues of W below \code{tol * max(eigenvalues)}
+#'   are treated as numerically zero and excluded from the inverse square
+#'   root, restricting it to the well-conditioned subspace of W.
 #'
 #' @returns An object with components of a CVA biplot
 #' @export
 #' @examples
 #' CVAgsvd(X=iris[,1:4],group = iris[,5]) |>
 #' CVAbiplot(group.col = c("orange","red","pink"))
-CVAgsvd <- function(X,group)
+CVAgsvd <- function(X,group,tol = 1e-8)
 {
   center=TRUE
   scaled=TRUE
@@ -60,9 +64,14 @@ CVAgsvd <- function(X,group)
 
   if(n > p)
   {
-    W_minhalf <- eigen(W)$vectors %*% diag(1/sqrt(eigen(W)$values)) %*%
-      t(eigen(W)$vectors)
-    eigenresult <- eigen(W_minhalf %*% B %*% W_minhalf)
+    ew   <- eigen(W, symmetric = TRUE)
+    keep <- ew$values > tol * max(ew$values)
+    Vw   <- ew$vectors[, keep, drop = FALSE]
+    W_minhalf <- Vw %*% diag(1 / sqrt(ew$values[keep]), sum(keep)) %*% t(Vw)
+
+    S <- W_minhalf %*% B %*% W_minhalf
+    S <- (S + t(S)) / 2
+    eigenresult <- eigen(S, symmetric = TRUE)
     V <- eigenresult$vectors
     Mstar <- W_minhalf %*% V
     Lambda <- eigenresult$values
