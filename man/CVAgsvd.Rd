@@ -4,12 +4,17 @@
 \alias{CVAgsvd}
 \title{CVA using the GSVD}
 \usage{
-CVAgsvd(X, group)
+CVAgsvd(X, group, tol = 1e-08)
 }
 \arguments{
 \item{X}{n x p data matrix}
 
 \item{group}{vector of size n showing the groups}
+
+\item{tol}{relative tolerance used when inverting the within-group
+covariance matrix W: eigenvalues of W below \code{tol * max(eigenvalues)}
+are treated as numerically zero and excluded from the inverse square
+root, restricting it to the well-conditioned subspace of W.}
 }
 \value{
 An object with components of a CVA biplot
