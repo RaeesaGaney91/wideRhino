@@ -52,3 +52,6 @@ rsconnect/
 inst/doc
 
 .positai
+
+/.quarto/
+**/*.quarto_ipynb
